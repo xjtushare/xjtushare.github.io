@@ -17,10 +17,10 @@
 
 <p>即把EFG从3移动到了4的位置，如下图：</p>
 <p><img src="/2021/03/25/array/16166535205113.jpg" alt="-w446"></p>
-<p><strong>数组容量的保障策略</strong><br>如果数组的容量不够，直接new一个新的数组，新的数组的长度为当前数组的长度再乘以2，<br>然后把老数组的值拷贝到新数组中去，返回新的数组即可</p>
+<p><strong>数组容量的保障策略</strong><br>如果数组的容量不够，直接new一个新的数组，新的数组的长度为当前数组的长度+当前数组长度的一半，即老数组的1.5倍。<br>然后把老数组的值拷贝到新数组中去，返回新的数组即可</p>
 <p>因此如果对ArrayList进行大量修改操作，涉及到大量的array copy，所以时间复杂度是很低的。</p>
 <p>为了弥补这个缺点，链表完美了解决了大量修改操作带来的时间复杂度开销问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">         grow(minCapacity);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line">  &#x2F;&#x2F;新数组容量</span><br><span class="line"> int newCapacity &#x3D; oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line"> &#x2F;&#x2F;把所有元素拷贝到新数组中去</span><br><span class="line">elementData &#x3D; Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">     </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">         grow(minCapacity);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line">  &#x2F;&#x2F;新数组容量为老数组的1.5</span><br><span class="line"> int newCapacity &#x3D; oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line"> &#x2F;&#x2F;把所有元素拷贝到新数组中去</span><br><span class="line">elementData &#x3D; Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">     </span><br></pre></td></tr></table></figure>
 
 
 <p><strong>详细代码</strong></p>
