@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-03-25T06:59:37.743Z</updated>
+  <updated>2021-03-29T02:45:00.060Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>611 有效三角形的个数</title>
+    <link href="http://example.com/2021/03/29/611-triangleNumber/"/>
+    <id>http://example.com/2021/03/29/611-triangleNumber/</id>
+    <published>2021-03-29T02:27:23.000Z</published>
+    <updated>2021-03-29T02:45:00.060Z</updated>
+    
+    <content type="html"><![CDATA[<p>有效三角形的个数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Tags</span><br><span class="line">array</span><br><span class="line"></span><br><span class="line">Companies</span><br><span class="line">给定一个包含非负整数的数组，你的任务是统计其中可以组成三角形三条边的三元组个数。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [2,2,3,4]</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">有效的组合是: </span><br><span class="line">2,3,4 (使用第一个 2)</span><br><span class="line">2,3,4 (使用第二个 2)</span><br><span class="line">2,2,3</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">数组长度不超过1000。</span><br><span class="line">数组里整数的范围为 [0, 1000]。</span><br></pre></td></tr></table></figure><p><strong>解法</strong><br>组成三角形条件：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">任意的两边之和大于第三边</span><br></pre></td></tr></table></figure><p><strong>本题优化</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对 数组排序，比如[2,3,4,5,6]  </span><br><span class="line">一开始第三边为数组最后一个数 a&#x3D; nums.length-1;</span><br><span class="line">另外两个指针，left&#x3D;0；right&#x3D;nums.length-2;</span><br><span class="line">nums[left]&#x3D;2; nums[right]&#x3D;5,考察l到r的数是否满足两边之和大于第三边；</span><br><span class="line">如果2+5&gt;6,那么，从2开始到5之间的所有数加上5都是大于6的，也就是从下标0开始到下标2之间的数加上5都大于6，即</span><br><span class="line">2+5&gt;6</span><br><span class="line">3+5&gt;6</span><br><span class="line">4+5&gt;6</span><br><span class="line">所以，当l&#x3D;0，r&#x3D;nums.length-2时候，能够组成的三角形个数为count +&#x3D; r-l即3-0&#x3D;3，共有3个。</span><br><span class="line">然后当第三边为a&#x3D;nums.length-2的时候，继续考察... </span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int triangleNumber(int[] nums) &#123;</span><br><span class="line">        if(nums.length&lt;3) return 0;</span><br><span class="line">        int count&#x3D;0;</span><br><span class="line">        Arrays.sort(nums); &#x2F;&#x2F;like [2,3,4,5,6]</span><br><span class="line">        for(int a&#x3D;nums.length-1;a&gt;&#x3D;2;a-- )&#123;</span><br><span class="line">            int l&#x3D;0,r&#x3D;a-1;</span><br><span class="line">            while(l&lt;r)&#123;</span><br><span class="line">                if(nums[l]+nums[r]&gt;nums[a])&#123;</span><br><span class="line">                    &#x2F;&#x2F;nums[l]+nums[r]满足&gt;nums[a]，那么从l到r-1之间的所有元素加nums[r]都大于nums[a]</span><br><span class="line">                    count +&#x3D; r-l;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;有效三角形的个数&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span</summary>
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多线程</title>
+    <link href="http://example.com/2021/03/27/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://example.com/2021/03/27/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</id>
+    <published>2021-03-27T07:00:23.000Z</published>
+    <updated>2021-03-27T10:06:02.775Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>定义<br>进程是操作系统上的划分；<br>线程是在进程上的划分；<br>线程的执行速度要比进程快<br>Java是多线程编程语言，在进行并发访问处理的时候，可能获得很高的性能。</p></li><li><p>多线程实现</p></li></ol><p><strong>继承Thread类实现多线程</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package basic_class_00.xiaodu.test;</span><br><span class="line"></span><br><span class="line">public class MyThread extends Thread &#123;</span><br><span class="line">    private String title;</span><br><span class="line">    public MyThread(String title) &#123;</span><br><span class="line">        this.title &#x3D; title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void run() &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; 6; x++) &#123;</span><br><span class="line">            System.out.println(this.title + &quot;运行.x &#x3D; &quot; + x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new MyThread(&quot;线程A&quot;).run();</span><br><span class="line">        new MyThread(&quot;线程B&quot;).run();</span><br><span class="line">        new MyThread(&quot;线程C&quot;).run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>输出：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">线程A运行.x &#x3D; 0</span><br><span class="line">线程A运行.x &#x3D; 1</span><br><span class="line">线程A运行.x &#x3D; 2</span><br><span class="line">线程A运行.x &#x3D; 3</span><br><span class="line">线程A运行.x &#x3D; 4</span><br><span class="line">线程A运行.x &#x3D; 5</span><br><span class="line">线程B运行.x &#x3D; 0</span><br><span class="line">线程B运行.x &#x3D; 1</span><br><span class="line">线程B运行.x &#x3D; 2</span><br><span class="line">线程B运行.x &#x3D; 3</span><br><span class="line">线程B运行.x &#x3D; 4</span><br><span class="line">线程B运行.x &#x3D; 5</span><br><span class="line">线程C运行.x &#x3D; 0</span><br><span class="line">线程C运行.x &#x3D; 1</span><br><span class="line">线程C运行.x &#x3D; 2</span><br><span class="line">线程C运行.x &#x3D; 3</span><br><span class="line">线程C运行.x &#x3D; 4</span><br><span class="line">线程C运行.x &#x3D; 5</span><br></pre></td></tr></table></figure><p><img src="/2021/03/27/%E5%A4%9A%E7%BA%BF%E7%A8%8B/16168322933336.jpg" alt="-w1055"></p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;定义&lt;br&gt;进程是操作系统上的划分；&lt;br&gt;线程是在进程上的划分；&lt;br&gt;线程的执行速度要比进程快&lt;br&gt;Java是多线程编程语言，在进行并发访问处理的时候，可能获得很高的性能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;多线程实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Array 数组</title>
