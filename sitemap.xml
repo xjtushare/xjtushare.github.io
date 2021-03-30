@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>http://example.com/2021/03/30/20-Valid-Parentheses/</loc>
     
     <lastmod>2021-03-30</lastmod>
     
@@ -10,6 +10,13 @@
   
   <url>
     <loc>http://example.com/2021/03/25/14_longest-common-prefix/</loc>
+    
+    <lastmod>2021-03-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/index.html</loc>
     
     <lastmod>2021-03-30</lastmod>
     
@@ -24,13 +31,6 @@
   
   <url>
     <loc>http://example.com/2021/03/30/200-numIslands/</loc>
-    
-    <lastmod>2021-03-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/2021/03/30/20-Valid-Parentheses/</loc>
     
     <lastmod>2021-03-30</lastmod>
     
