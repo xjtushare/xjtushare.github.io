@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="stylesheet" href="/css/post.css"><link rel="icon" href="/img/favicon.png"><title>20. 有效的括号</title><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="blog" type="application/atom+xml">
+</head><body>　　<div class="inner"><h2>20. 有效的括号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">给定一个只包括 &#39;(&#39;，&#39;)&#39;，&#39;&#123;&#39;，&#39;&#125;&#39;，&#39;[&#39;，&#39;]&#39; 的字符串 s ，判断字符串是否有效。</span><br><span class="line"></span><br><span class="line">有效字符串需满足：</span><br><span class="line"></span><br><span class="line">左括号必须用相同类型的右括号闭合。</span><br><span class="line">左括号必须以正确的顺序闭合。</span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：s &#x3D; &quot;()&quot;</span><br><span class="line">输出：true</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：s &#x3D; &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出：true</span><br><span class="line">示例 3：</span><br><span class="line"></span><br><span class="line">输入：s &#x3D; &quot;(]&quot;</span><br><span class="line">输出：false</span><br><span class="line">示例 4：</span><br><span class="line"></span><br><span class="line">输入：s &#x3D; &quot;([)]&quot;</span><br><span class="line">输出：false</span><br><span class="line">示例 5：</span><br><span class="line"></span><br><span class="line">输入：s &#x3D; &quot;&#123;[]&#125;&quot;</span><br><span class="line">输出：true</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">1 &lt;&#x3D; s.length &lt;&#x3D; 104</span><br><span class="line">s 仅由括号 &#39;()[]&#123;&#125;&#39; 组成</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>栈解决的问题：</li>
+<li>最近相关性</li>
+<li>先来后到，先进后出问题。</li>
+<li>比较复杂的算法最后都归结到找最近的重复性</li>
+<li>因为只能写 if else; for loop 和recursion</li>
+</ul>
+<p>  <strong>解法：</strong><br> <strong>1.暴力</strong><br> ：不断replace匹配的括号</p>
+<ul>
+<li>情况： a. ()[]{}</li>
+<li>b. (([]))  找到匹配的替换成空</li>
+<li>o(n平方)</li>
+</ul>
+<p> <strong>2.使用栈</strong></p>
+<ul>
+<li><p>如果是左括号，就压入右括号到栈里面去；</p>
+</li>
+<li><p>loop</p>
+</li>
+<li><p>如果是右括号，就和栈顶元素进行匹配，如果匹配，就把栈顶元素移除栈，消除这对括号</p>
+</li>
+<li><p>不然就不合法。</p>
+</li>
+<li><p>if 左括号，入栈</p>
+</li>
+<li><p>else if 右括号，则和栈顶元素进行比较，看是否匹配</p>
+</li>
+<li><p>if 匹配，栈顶元素出栈，栈中元素减少一个，同时字符串的index跳到下一个字符</p>
+</li>
+<li><p>最后要判断下栈里面的所有元素都清空了，且每一次扫描的字符不会和栈顶元素匹配不上</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class isValid &#123;</span><br><span class="line">    public boolean isValid(String s) &#123;</span><br><span class="line">        Stack&lt;Character&gt; stack &#x3D; new Stack&lt;&gt;();</span><br><span class="line">&#x2F;&#x2F;        遍历一遍整个字符串，遇到左括号，把相对应的右括号压入栈，</span><br><span class="line">&#x2F;&#x2F;        这样弹栈pop的时候，弹出的值和当前字符串中扫描到的值是否一样</span><br><span class="line">        for (char c : s.toCharArray()) &#123;</span><br><span class="line">            if (c &#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">                stack.push(&#39;)&#39;);</span><br><span class="line">            &#125; else if (c &#x3D;&#x3D; &#39;&#123;&#39;) &#123;</span><br><span class="line">                stack.push(&#39;&#125;&#39;);</span><br><span class="line">            &#125; else if (c &#x3D;&#x3D; &#39;[&#39;) &#123;</span><br><span class="line">                stack.push(&#39;]&#39;);</span><br><span class="line">            &#125; else if (stack.isEmpty() || stack.pop() !&#x3D; c) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="/js/jquery.min.js"></script><script src="/js/main.js"></script></body></html>
