@@ -102,7 +102,7 @@
 
   
   <url>
-    <loc>http://example.com/tags/Data-Structures/</loc>
+    <loc>http://example.com/tags/way/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -110,13 +110,6 @@
   
   <url>
     <loc>http://example.com/tags/leetcode-String/</loc>
-    <lastmod>2021-04-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/way/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -180,6 +173,13 @@
   
   <url>
     <loc>http://example.com/tags/leetcode-tree/</loc>
+    <lastmod>2021-04-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Data-Structures/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
