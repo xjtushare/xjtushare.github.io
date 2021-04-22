@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-02T03:09:31.842Z</updated>
+  <updated>2021-04-22T07:29:20.347Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>01. 两数之和</title>
+    <link href="http://example.com/2021/04/22/lc-01-twoSum/"/>
+    <id>http://example.com/2021/04/22/lc-01-twoSum/</id>
+    <published>2021-04-22T07:09:21.000Z</published>
+    <updated>2021-04-22T07:29:20.347Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>一、题目描述：</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 两数之和</span><br><span class="line">给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 的那 两个 整数，并返回它们的数组下标。</span><br><span class="line"></span><br><span class="line">你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</span><br><span class="line"></span><br><span class="line">你可以按任意顺序返回答案。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure><p><strong>二、我的思路：</strong></p><ol><li>使用哈希表（key,value）分别记录数组里面的元素和对应的下标，</li><li>如果key = target-当前的数nums[i],说明之前遍历过的数字key + 当前的数 等于target，</li><li>那么返回之前遍历过的数字key对应的下标 和当前遍历到的元素nums[i]的下标i。</li><li>如果当前遍历到的数字nums[i],用target - nums[i]得到的数不在map里面，说明当前还没有找到一个数和当前数相加等于target；那么就把当前数字nums[i]和对应的下标i加入到map中。</li><li>如果遍历完了整个数组都没有找到符合条件的，则return new int[]{-1,-1};</li></ol><p><strong>三、AC 代码：</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            int temp &#x3D; target - nums[i];</span><br><span class="line">            if(map.containsKey(temp))&#123;</span><br><span class="line">                return new int[]&#123;map.get(temp),i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(nums[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[]&#123;-1,-1&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>四、总结：</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array | hash-table </span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;一、题目描述：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span clas</summary>
+      
+    
+    
+    
+    
+    <category term="leetcode.hash-table" scheme="http://example.com/tags/leetcode-hash-table/"/>
+    
+    <category term="leetcode.array" scheme="http://example.com/tags/leetcode-array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hadoop01. hadoop概念</title>
+    <link href="http://example.com/2021/04/05/dsj-hadoop01/"/>
+    <id>http://example.com/2021/04/05/dsj-hadoop01/</id>
+    <published>2021-04-04T16:50:48.000Z</published>
+    <updated>2021-04-04T17:51:12.684Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>一、What is hadoop?</strong><br><strong>1、概念</strong></p><p>一个允许用简单的编程模型在计算机集群上对大型数据集进行分布式处理的基础框架。<br>低成本、高可靠、高扩展、高有效、高容错等特性让 hadoop 成为最流行的大数据分析系统<br>功能：提供本地计算和存储功能<br>Apache™ Hadoop® project develops open-source software for reliable, scalable, distributed computing.<br>The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage</p><p>来源：  <a href="http://hadoop.apache.org/">http://hadoop.apache.org</a></p><p><strong>2、hadoop优势</strong></p><p>1、高可靠：<br>hadoop底层维护的多副本机制，（默认3个）。某个计算元素或者存储挂了，不会导致数据丢失。<br>2、高扩展：<br> 集群见分配任务，节点扩展很方便，（动态扩展）<br>3、高效性：<br>MapReduce思想，hadoop并行工作，任务处理快。（多个节点共同处理）</p><p>4、高容错：<br> 自动将失败的任务重新分配：<br> 比如某一个节点挂了，则hadoop会自动的把这个节点的任务分配到其他节点，并正常运行（涉及到调度机制）</p><p><strong>3、hadoop1.x 2.x 3.x区别</strong></p><p>1、hadoop1.x </p><ul><li>HDFS(数据存储)</li><li>MapReduce(计算+资源调度(CPU,内存，磁盘))</li><li>Common（辅助工具）</li></ul><p>2、hadoop2.x （解藕，MapReduce）</p><ul><li>HDFS(数据存储)</li><li>MapReduce(计算)</li><li>Common（辅助工具）</li><li>**Yarm(资源调度(CPU,内存，磁盘)) **</li></ul><p>3、hadoop3.x </p><blockquote><p><a href="http://hadoop.apache.org/docs/r3.0.1/">http://hadoop.apache.org/docs/r3.0.1/</a></p></blockquote><ul><li>最低Java版本要求从Java7变为Java8</li><li>HDFS支持纠删码，将原本3倍的存储消耗降低到1.4倍。</li></ul><p>Hadoop1.x,hadoop的MapReduce同时处理业务逻辑运算和资源调度，耦合性高。<br>Hadoop2.x,hadoop增加了Yarn，Yarn单独负责资源调度。MapReduce只负责运算。</p><p><strong>4、Hadoop 生态圈</strong></p><p><img src="/2021/04/05/dsj-hadoop01/1.jpeg"></p><p> Hadoop 的生态系统，主要由 HDFS、MapReduce， HBase， Zookeeper， Pig、 Hive 等核心组件构成，另外还包括 Sqoop、Flume 等框架，用来与其他企业系统融合</p><p> Hadoop 生态圈包括以下主要组件。<br>1）HDFS<br>一个提供高可用的获取应用数据的分布式文件系统<br>2）MapReduce<br>一个并行处理大数据集的编程模型<br>3）HBase<br>一个可扩展的分布式数据库，支持大表的结构化数据存储。是一个建立在 HDFS 之上的，面向列的 NoSQL 数据库，用于快速读/写大量数据。</p><p>4）Hive<br>一个建立在 Hadoop 上的数据仓库基础构架。它提供了一系列的工具；可以用来进行数据提取转化加载（ETL），这是一种可以存储、查询和分析存储在 Hadoop 中的大规模数据的机制。</p><p>Hive 定义了简单的类 SQL 查询语言，称为 HQL，它允许不熟悉 MapReduce 的开发人员也能编写数据查询语句，然后这些语句被翻译为 Hadoop 上面的 MapReduce 任务</p><p>5）Zookeeper<br>—个应用于分布式应用的高性能的协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括配置维护、域名服务、分布式同步、组服务等。<br>6）Flume<br>提供了分布式、可靠、高效的服务，用于收集、汇总大数据，并将单台计算机的大量数据转移到 HDFS。它基于一个简单而灵活的架构，并提供了数据流的流。它利用简单的可扩展的数据模型，将企业中多台计算机上的数据转移到 Hadoop</p><p><strong>二、hdfs主要解决的问题：</strong><br>文件系统是操作系统提供的磁盘空间管理服务，该服务只需要用户指定文件的存储位置及文件读取路径，而不需要用户了解文件在磁盘上是如何存放的。</p><p>当文件所需空间大于本机磁盘空间时，通常：</p><ul><li><p>加磁盘，但是加到一定程度就受限制了。</p></li><li><p>加机器，即用远程共享目录的方式提供网络化的存储，它可以把不同文件放入不同的机器中，而且空间不足时可继续加机器，突破了存储空间的限制。</p></li><li><p><em>传统的分布式文件系统：</em>*<br>1）各个存储结点的负载不均衡，单机负载可能极高（经常读取某个机器上的某个热门文件）<br>2）数据可靠性低（机器挂了，文件就不能访问）<br>3）文件管理困难（文件的存储位置，机器的空间维护调整）</p></li></ul><p><strong>三、设计设计思想：</strong></p><p>HDFS 的设计理念是为了满足特定的大数据应用场景，提供对应用程序数据的高吞吐量访问，并且适用于具有大数据集的应用程序，可以运行在普通机器上，以流式数据方式存储文件，一次写入、多次查询。</p><blockquote><p><a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html">https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html</a><br>1、高容错性<br> HDFS 将数据自动保存多个副本，副本丢失后，自动恢复，从而实现数据的高容错性<br>2、适合批处理<br>HDFS 适合一次写入、多次查询（读取）的情况。在数据集生成后，需要长时间在此数据集上进行各种分析。每次分析都将涉及该数据集的大部分数据甚至全部数据，因此读取整个数据集的时间延迟比读取第一条记录的时间延迟更重要。<br>3、适合存储大文件<br>这里说的大文件包含两种意思：一是值文件大小超过 100MB 及达到 GB 甚至 TB、PB 级的文件;二是百万规模以上的文件数量。</p></blockquote><p><strong>四、架构</strong><br><strong>1、HDFS(The Hadoop Distributed File System)架构（负责存储）</strong></p><ul><li>NameNode         存储文件元数据(文件名、目录，文件属性、文件块列表以及块所在的DataNode)</li><li>DataNode       存储文件的块数据</li><li>Secondary NameNode    监控HDFS状态的后台程序，每隔一段时间，获取HDFS元数据的快照</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;一、What is hadoop?&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;1、概念&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一个允许用简单的编程模型在计算机集群上对大型数据集进行分布式处理的基础框架。&lt;br&gt;低成本、高可靠、高扩展、高有效、高容错等特性让 hado</summary>
+      
+    
+    
+    
+    
+    <category term="bigdata.hadoop" scheme="http://example.com/tags/bigdata-hadoop/"/>
+    
+  </entry>
   
   <entry>
     <title>w02. 分析一门技术 可这样</title>
